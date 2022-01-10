@@ -1,91 +1,115 @@
-import { Observable, of, from, BehaviorSubject } from "rxjs";
-import { map, delay, mergeAll, switchAll, switchMap } from "rxjs/operators";
+/*
+// map
+import { of } from "rxjs";
+import { map } from "rxjs/operators";
 
-
-const data = of([
+const data = [
     {
         brand: 'porsche',
         model: '911'
-    }, {
+    },
+    {
         brand: 'porsche',
         model: 'macan'
-    }, {
+    },
+    {
         brand: 'ferarri',
         model: '458'
-    }, {
+    },
+    {
         brand: 'lamborghini',
         model: 'urus'
-    }
-]);
+    },
+];
 
-// get data as band+model string.result: 
-// ["porsche 911","porsche macan", "ferarri 458"]
-// data.pipe(
-//     map(cars=>cars.map(car=>`${car.brand} ${car.model}`))
-// ).subscribe(res=>console.log(res));
+const ob1 = of(data);
+const su = ob1.pipe(
+    map(cars => cars.map(car => `${car.brand} ${car.model}`))
 
+)
 
-// data.pipe(
-//     map(cars=>cars.filter(car=>car.brand === 'porsche'))
-// ).subscribe(console.log);
-
-
-
-/** mergeAll */
-// const getData = (param) => {
-//     return of(`retrieved new data with param ${param}`).pipe(
-//         delay(1000)
-//     )
-// }
-
-// from([1, 2, 3, 4]).pipe(
-//     map(param => getData(param)),
-//     mergeAll()
-// ).subscribe(console.log)
-
-/** switchMap */
-
-// const getData = (param) => {
-//     return of(`Retrieved new data with param ${param}`).pipe(
-//         delay(1000)
-//     )
-// }
-
-//  using switchAll 
-// from([1,2,3,4]).pipe(
-//     map(param=>getData(param)),
-//     switchAll()
-// ).subscribe(res=>console.log(res))
-
-
-// from([1, 2, 3, 4]).pipe(
-//     switchMap(param => getData(param))
-// ).subscribe(res => console.log(res))
+su.subscribe(car => console.log(car))
+*/
 /*
-
-const filters = ['brand=porsche','model=911','horsepower=389','color=red'];
-const activeFilters = new BehaviorSubject('');
-
-const applyFilters = () =>{
-    filters.forEach((filter,index)=>{
-
-        let newFilters = activeFilters.value;
-        if(index===0){
-            newFilters= `?${filter}`
-        }else{
-            newFilters=`${newFilters}&${filter}`
-        }
-
-        activeFilters.next(newFilters)
-    })
+// margeMap
+// # two observable 
+import { of, from } from "rxjs";
+import { map, mergeAll, mergeMap } from "rxjs/operators";
+const getData2 = (para) => {
+    return of(` I am second function ${para}`)
 }
-// using switchMap
-activeFilters.pipe(
-    switchMap(param=>getData(param))
-).subscribe(console.log)
 
-applyFilters()
+const getData = (param) => {
+    return of(getData2(param))
+}
+
+// from([1, 2, 3, 4]).pipe(map(param => getData(param))).subscribe(val => val.subscribe(res => console.log(res)))
+from([1, 2, 3, 4]).pipe(
+    map(param => getData(param)),
+    mergeAll(),
+    mergeAll(),
+).subscribe(val => console.log(val))
+*/
+
+
+
+
+// switchMap
+// concatMap
+
+/*
+import { of, from } from 'rxjs';
+import { map, mergeMap, delay, mergeAll, flatMap } from 'rxjs/operators';
+const getData = (param) => {
+    return of(`topic: ${param}`).pipe(
+        delay(1000))
+}
+// using a regular map
+from(['regular map# 1', 'regular map# 2', 'regular map# 3', 'regular map# 4']).pipe(
+    map(param => getData(param))
+).subscribe(val => val.subscribe(data => console.log(data)));
+// using map and mergeAll
+from(['map and mergeAll# 1', 'map and mergeAll# 2', 'map and mergeAll# 3', 'map and mergeAll# 4']).pipe(
+    map(param => getData(param)),
+    mergeAll()
+).subscribe(val => console.log(val))
+// using mergeMap
+from(['mergeMap# 1', 'mergeMap# 2', 'mergeMap# 3', 'mergeMap# 4']).pipe(
+    mergeMap(param => getData(param))
+).subscribe(val => console.log(val))
+// flatMap
+from(['flatMap# 1', 'flatMap# 2', 'flatMap# 3', 'flatMap# 4']).pipe(
+    flatMap(param => getData(param))
+).subscribe(val => console.log(val))
 
 */
+import { of, from } from 'rxjs'; 
+import { map, delay, mergeMap, concatMap } from 'rxjs/operators';
+
+const getData = (param) => {
+  const delayTime = Math.floor(Math.random() * 10000) + 1;
+  return of(`retrieved new data with params: ${param} and delay: ${delayTime}`).pipe(
+    delay(delayTime)
+  )
+}
+
+// using a regular map
+from([1,2,3,4]).pipe(
+  map(param => getData(param))
+).subscribe(val => val.subscribe(data => console.log('map:', data)));
+
+// using mergeMap
+from([1, 2, 3 ,4]).pipe(
+  mergeMap(param => getData(param))
+).subscribe(val => console.log('mergeMap:', val));
+
+// using concatMap
+from([1, 2, 3 ,4]).pipe(
+  concatMap(param => getData(param))
+).subscribe(val => console.log('concatMap:', val));
+
+
+
+
 
 

@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -r esm ./mainTopic/subject.js",
+    "allmaps": "nodemon -r esm ./operators/allMaps.js",
+    "allswitch": "nodemon -r esm ./operators/allSwitch.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
