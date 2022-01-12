@@ -7,6 +7,9 @@
     "start": "nodemon -r esm ./mainTopic/subject.js",
     "allmaps": "nodemon -r esm ./operators/allMaps.js",
     "allswitch": "nodemon -r esm ./operators/allSwitch.js",
+    "tap": "nodemon -r esm ./operators/tap.js",
+    "share": "nodemon -r esm ./operators/share.js",
+    "combinelatest": "nodemon -r esm ./mainTopic/combinelatest.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -83,33 +83,46 @@ from(['flatMap# 1', 'flatMap# 2', 'flatMap# 3', 'flatMap# 4']).pipe(
 ).subscribe(val => console.log(val))
 
 */
-import { of, from } from 'rxjs'; 
-import { map, delay, mergeMap, concatMap } from 'rxjs/operators';
+/*
+import { of, from } from 'rxjs';
+import { map, delay, mergeMap, concatMap, mapTo } from 'rxjs/operators';
 
 const getData = (param) => {
-  const delayTime = Math.floor(Math.random() * 10000) + 1;
-  return of(`retrieved new data with params: ${param} and delay: ${delayTime}`).pipe(
-    delay(delayTime)
-  )
+    const delayTime = Math.floor(Math.random() * 10000) + 1;
+    return of(`retrieved new data with params: ${param} and delay: ${delayTime}`).pipe(
+        delay(delayTime)
+    )
 }
 
 // using a regular map
-from([1,2,3,4]).pipe(
-  map(param => getData(param))
+from([1, 2, 3, 4]).pipe(
+    map(param => getData(param))
 ).subscribe(val => val.subscribe(data => console.log('map:', data)));
 
 // using mergeMap
-from([1, 2, 3 ,4]).pipe(
-  mergeMap(param => getData(param))
+from([1, 2, 3, 4]).pipe(
+    mergeMap(param => getData(param))
 ).subscribe(val => console.log('mergeMap:', val));
 
 // using concatMap
-from([1, 2, 3 ,4]).pipe(
-  concatMap(param => getData(param))
+from([1, 2, 3, 4]).pipe(
+    concatMap(param => getData(param))
 ).subscribe(val => console.log('concatMap:', val));
 
 
 
+from([1, 2, 3, 4]).pipe(
+    map(param => getData(param)),
+    mapTo(pram => getData('hi'))
+).subscribe(res => console.log(res))
+
+*/
 
 
-
+import { interval } from 'rxjs';
+import { mapTo } from 'rxjs/operators';
+//emit value every three seconds  
+const source = interval(3000);
+//map all emissions to one value  
+const example = source.pipe(mapTo('Welcome to JavaTpoint!'));
+const subscribe = example.subscribe(val => console.log(val));  
