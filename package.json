@@ -10,6 +10,8 @@
     "tap": "nodemon -r esm ./operators/tap.js",
     "share": "nodemon -r esm ./operators/share.js",
     "combinelatest": "nodemon -r esm ./mainTopic/combinelatest.js",
+    "debouncetime": "nodemon -r esm ./operators/debounceTime.js",
+    "forkjoin": "nodemon -r esm ./mainTopic/forkJoin.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
