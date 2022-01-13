@@ -13,6 +13,9 @@
     "debouncetime": "nodemon -r esm ./operators/debounceTime.js",
     "forkjoin": "nodemon -r esm ./mainTopic/forkJoin.js",
     "takeuntil": "nodemon -r esm ./operators/takeUntil.js",
+    "concat": "nodemon -r esm ./operators/concat.js",
+    "concatAll": "nodemon -r esm ./operators/concatAll.js",
+    "scan": "nodemon -r esm ./operators/scan.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
