@@ -16,6 +16,8 @@
     "concat": "nodemon -r esm ./operators/concat.js",
     "concatAll": "nodemon -r esm ./operators/concatAll.js",
     "scan": "nodemon -r esm ./operators/scan.js",
+    "merge": "nodemon -r esm ./mainTopic/merge.js",
+    "throwError": "nodemon -r esm ./mainTopic/throwError.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
